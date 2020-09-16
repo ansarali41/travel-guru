@@ -1,245 +1,26 @@
-var userData = [
+var fakeLocation = [
     {
         id: 1,
-        name: {
-            first: "Fatih",
-            last: "Nalbantoğlu"
-        },
-        location: {
-            city: "Bitlis",
-            state: "Kayseri",
-            country: "Turkey"
-        },
-        email: "fatihnalbantoğlu@example.com",
-        phone: "(431)-965-5220",
-        picture: "https://randomuser.me/api/portraits/men/18.jpg",
-        salary: 1000
+        name: "Cox'sBazar",
+        shortDescription: "Cox's Bazar is the prime beach and tourist town in Bangladesh, situated alongside the beach of the Bay of Bengal, beside the Indian ocean.",
+        fullDescription: "Cox's Bazar is famous for its long natural sandy sea beach. I have been to Cox's Bazar in all seasons and many times over the last 20 years or so. And I would love to share my practical experience with you! Even 20 years ago Cox's Bazar was relatively a small town. There were lots of hotels, motels and guest houses for tourists' accommodations and restaurants for having a variety of great food still there at around that time",
+        photo: 'https://i.ibb.co/pJ9y6V2/Sajek.png'
     },
     {
         id: 2,
-        name: {
-            first: "Nathaniel",
-            last: "Lynch"
-        },
-        location: {
-            city: "Devonport",
-            state: "Queensland",
-            country: "Australia"
-        },
-        email: "nathaniel.lynch@example.com",
-        phone: "04-6069-3603",
-
-        picture: "https://randomuser.me/api/portraits/men/63.jpg",
-        salary: 1200
+        name: "Sreemangal",
+        shortDescription: "The top attractions to visit in Sreemangal are: Lawachara National Park. Ham Ham Waterfall. Madhabpur Lake. Baikka Beel Wetland Sanctuary. Green Leaf Eco Tourism.",
+        fullDescription: "Sreemangal is a hilly area covered with tea estates. There are 47 tea gardens in Sreemangal. A large portion of world’s highest quality tea is grown here. It is also called the city of ‘two leaves and a bud. Sreemangal is famous for nature, forests and wildlife.",
+        photo: 'https://i.ibb.co/rf78Wzb/Sreemongol.png'
     },
     {
         id: 3,
-        name: {
-            first: "Lauren",
-            last: "Newman"
-        },
-        location: {
-            city: "Armagh",
-            state: "Lincolnshire",
-            country: "United Kingdom"
-        },
-        email: "lauren.newman@example.com",
-        phone: "0151-684-1689",
-        picture: "https://randomuser.me/api/portraits/women/7.jpg",
-        salary: 1150
+        name: "Sundarban",
+        shortDescription: "The Sundarbans is a mangrove area in the delta formed by the confluence of the Ganges, Brahmaputra and Meghna Rivers in the Bay of Bengal. It spans from the Hooghly River in India's state of West Bengal to the Baleswar River in Bangladesh",
+        fullDescription: "Sundarban is the natural habitat of the world’s famous Royal Bengal Tiger, spotted deer, crocodiles, jungle fowl, wild boar, lizards and many more. Migratory flock of Siberian ducks flying over thousands of sail boats loaded with timber, Golpata, fuel wood, honey, shell and fish further add to the serene natural beauty of the Sundarban",
+        photo: 'https://i.ibb.co/QfshjTw/sundorbon.png'
     },
-    {
-        id: 4,
-        name: {
-            first: "Bertram",
-            last: "Kristensen"
-        },
-        location: {
-            city: "Roslev",
-            state: "Midtjylland",
-            country: "Denmark"
-        },
-        email: "bertram.kristensen@example.com",
-        phone: "83652243",
-        picture: "https://randomuser.me/api/portraits/men/37.jpg",
-        salary: 2200
-    },
-    {
-        id: 5,
-        name: {
-            first: "Lya",
-            last: "Charles"
-        },
-        location: {
-            city: "Marseille",
-            state: "Cantal",
-            country: "France"
-        },
-        email: "lya.charles@example.com",
-        phone: "04-53-36-91-86",
-        picture: "https://randomuser.me/api/portraits/women/41.jpg",
-        salary: 4000
-    },
-    {
-        id: 6,
-        name: {
-            first: "Nelson",
-            last: "Otoole"
-        },
-        location: {
-            city: "Edenderry",
-            state: "Cork City",
-            country: "Ireland"
-        },
-        email: "nelson.otoole@example.com",
-        phone: "061-859-0534",
-        picture: "https://randomuser.me/api/portraits/men/17.jpg",
-        salary: 5000
-    },
-    {
-        id: 7,
-        name: {
-            first: "Corey",
-            last: "Roberts"
-        },
-        location: {
-            city: "Townsville",
-            state: "Queensland",
-            country: "Australia"
-        },
-        email: "corey.roberts@example.com",
-        phone: "01-8848-3695",
-        picture: "https://randomuser.me/api/portraits/men/28.jpg",
-        salary: 4400
-    },
-    {
-        id: 8,
-        name: {
-            first: "Abraham",
-            last: "Kempe"
-        },
-        location: {
-            city: "Sankit Augustin",
-            state: "Hessen",
-            country: "Germany"
-        },
-        email: "abraham.kempe@example.com",
-        phone: "0636-2614287",
-        picture: "https://randomuser.me/api/portraits/men/67.jpg",
-        salary: 5000
-    },
-    {
-        id: 9,
-        name: {
-            first: "Noah",
-            last: "Liu"
-        },
-        location: {
-            city: "Aylmer",
-            state: "Manitoba",
-            country: "Canada"
-        },
-        email: "noah.liu@example.com",
-        phone: "765-954-7380",
-        picture: "https://randomuser.me/api/portraits/men/86.jpg",
-        salary: 6600
-    },
-    {
-        id: 10,
-        name: {
-            first: "Ava",
-            last: "Picard"
-        },
-        location: {
-            city: "Nice",
-            state: "Côtes-D'Armor",
-            country: "France"
-        },
-        email: "ava.picard@example.com",
-        phone: "04-14-48-69-90",
-        picture: "https://randomuser.me/api/portraits/women/41.jpg",
-        salary: 8000
-    },
-    {
-        id: 11,
-        name: {
-            first: "Marilou",
-            last: "Scott"
-        },
-        location: {
-            city: "Chipman",
-            state: "New Brunswick",
-            country: "Canada"
-        },
-        email: "marilou.scott@example.com",
-        phone: "315-768-4558",
-        picture: "https://randomuser.me/api/portraits/women/5.jpg",
-        salary: 8000
-    },
-    {
-        id: 12,
-        name: {
-            first: "Lola",
-            last: "Edwards"
-        },
-        location: {
-            city: "Gorey",
-            state: "Fingal",
-            country: "Ireland"
-        },
-        email: "lola.edwards@example.com",
-        phone: "021-941-3453",
-        picture: "https://randomuser.me/api/portraits/women/54.jpg",
-        salary: 10000
-    },
-    {
-        id: 13,
-        name: {
-            first: "Maria",
-            last: "Lee"
-        },
-        location: {
-            city: "Greymouth",
-            state: "Bay of Plenty",
-            country: "New Zealand"
-        },
-        email: "maria.lee@example.com",
-        phone: "(582)-724-1344",
-        picture: "https://randomuser.me/api/portraits/women/41.jpg",
-        salary: 15000
-    },
-    {
-        id: 14,
-        name: {
-            first: "Amelia",
-            last: "Thompson"
-        },
-        location: {
-            city: "Nelson",
-            state: "Nelson",
-            country: "New Zealand",
-        },
-        email: "amelia.thompson@example.com",
-        phone: "(834)-410-7506",
-        picture: "https://randomuser.me/api/portraits/women/3.jpg",
-        salary: 19000
-    },
-    {
-        id: 15,
-        name: {
-            first: "Vicky",
-            last: "Butler"
-        },
-        location: {
-            city: "Durham",
-            state: "West Midlands",
-            country: "United Kingdom"
-        },
-        email: "vicky.butler@example.com",
-        phone: "0114848 281 4386",
-        picture: "https://randomuser.me/api/portraits/women/83.jpg",
-        salary: 20000
-    }
+
 ]
 
-export default userData;
+export default fakeLocation;

@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <div className="header-container">
             <Navbar bg="white" variant="light">
-                <Navbar.Brand href="#home"><img src={logo} alt="" /></Navbar.Brand>
+                <Navbar.Brand href="/home"><img src={logo} alt="" /></Navbar.Brand>
                 <Nav className="mr-auto">
                     <Form inline>
                         <FormControl type="text" placeholder="Search Your Destination" className="mr-sm-2" />
@@ -18,7 +18,7 @@ const Header = () => {
                     <Nav.Link href="#destination">Destination</Nav.Link>
                     <Nav.Link href="#blog">Blog</Nav.Link>
                     <Nav.Link href="#features">Contact</Nav.Link>
-                    <Nav.Link href="#login"><Button variant="warning">Login</Button></Nav.Link>
+                    <Nav.Link href="/login"><Button variant="warning">Login</Button></Nav.Link>
                 </Nav>
             </Navbar>
         </div>
