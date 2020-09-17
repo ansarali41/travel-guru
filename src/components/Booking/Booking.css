@@ -5,9 +5,26 @@
 }
 .location-details{
     border: 1px solid black;
+    text-align: center;
+    height: 300px;
+    margin-left: 50px;
  
 }
-.booking-info{
+.booking-start{
     border: 1px solid black;
+    text-align: center;
+    height: 300px;
+    padding: 50px 40px
    
 }
+.booking-start input{
+    width: 60%;
+}
+.submit-btn{
+    background-color: #E0A800;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+

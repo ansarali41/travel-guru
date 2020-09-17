@@ -1,0 +1,14 @@
+.login-container{
+    margin:  5% 35%;
+    text-align: center;
+}
+.login-form{
+    border: 2px solid #E0A800;
+    text-align: center;
+    width: 400px;
+    padding: 40px 50px;
+    border-radius: 5px;
+}
+.login-form  input{
+    width: 100%;
+}
