@@ -7,8 +7,8 @@ const TravelingLocation = (props) => {
     const { name, photo } = props.location;
 
     return (
-        <Card style={{ width: '18rem' }} className="img-container" onClick={() => props.handleSelectedLocation(name)}>
-            <Link to="/booking"><Card.Img variant="top" src={photo} /></Link>
+        <Card style={{ width: '18rem' }} className="img-container">
+            <Link to={`/booking/${name}`}><Card.Img variant="top" src={photo} /></Link>
             <div className="centered">
                 <h3>{name}</h3>
             </div>

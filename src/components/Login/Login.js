@@ -17,6 +17,9 @@ const Login = () => {
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
 
+    // email password login
+    
+
     // google Login
     const googleSignIn = () => {
         const  googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -29,10 +32,6 @@ const Login = () => {
             }
             setLoggedInUser(signedInUser);
             history.replace(from);
-
-
-
-            console.log(user);
           })
           .catch(function(error) {
             var errorMessage = error.message;
@@ -52,10 +51,6 @@ const Login = () => {
             }
             setLoggedInUser(signedInUser);
             history.replace(from);
-
-
-
-            console.log(user);
           })
           .catch(function(error) {
             var errorMessage = error.message;

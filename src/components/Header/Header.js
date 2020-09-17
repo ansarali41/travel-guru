@@ -36,15 +36,15 @@ const Header = () => {
                     </Form>
                 </Nav>
                 <Nav>
-                    <Nav.Link href=""><Link to="/home">Home</Link></Nav.Link>
+                    <Link to="/home">Home</Link>
                     <Nav.Link href="">Destination</Nav.Link>
                     <Nav.Link href="">Blog</Nav.Link>
                     <Nav.Link href="">Contact</Nav.Link>
-                    {loggedInUser.name && <Nav.Link href="">{loggedInUser.name}</Nav.Link>}
-                    {loggedInUser.name ? <Link to="/login"><Button onClick={logOutHandler} variant="warning">Logout</Button>
+                    {loggedInUser.name &&  <Nav.Link href="">{loggedInUser.name}</Nav.Link>}
+                    {loggedInUser.name ? <Link to="/login"><Button onClick={logOutHandler}      variant="warning">Logout</Button>
                     </Link> : <Link to="/login"><Button variant="warning">Login</Button></Link>
                     }
-
+                        
                 </Nav>
             </Navbar>
         </div>
