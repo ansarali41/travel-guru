@@ -12,3 +12,7 @@
 .login-form  input{
     width: 100%;
 }
+.create-account{
+    color: orange;
+    cursor: pointer;
+}

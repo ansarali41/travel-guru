@@ -49,7 +49,7 @@ var fakeHotel = [
     },
     {
         id: 4,
-        name:'Light bright airy stylish apt & safe peacefully stay',
+        name:'Well Park Residence Boutique Hotel',
         category: "Sreemangal",
         guest:4,
         bedrooms:2,
@@ -65,7 +65,7 @@ var fakeHotel = [
     },
     {
         id: 5,
-        name:'Apartment in Lost Panorama',
+        name:'Hotel Agrabad',
         category: "Sreemangal",
         guest:4,
         bedrooms:2,
@@ -81,7 +81,7 @@ var fakeHotel = [
     },
     {
         id: 6,
-        name:'Ar Lounge & Pool (r&r + b&b)',
+        name:'Hotel Royal Avenue',
         category: "Sreemangal",
         guest:4,
         bedrooms:2,
@@ -97,7 +97,7 @@ var fakeHotel = [
     },
     {
         id: 7,
-        name:'Light bright airy stylish apt & safe peacefully stay',
+        name:'Hotel Hilton City Residential',
         category: "Sundarban",
         guest:4,
         bedrooms:2,
@@ -113,7 +113,7 @@ var fakeHotel = [
     },
     {
         id: 8,
-        name:'Apartment in Lost Panorama',
+        name:'Asian Sr Hotel',
         category: "Sundarban",
         guest:4,
         bedrooms:2,
@@ -129,7 +129,7 @@ var fakeHotel = [
     },
     {
         id: 9,
-        name:'Ar Lounge & Pool (r&r + b&b)',
+        name:'Hotel Star Park',
         category: "Sundarban",
         guest:4,
         bedrooms:2,

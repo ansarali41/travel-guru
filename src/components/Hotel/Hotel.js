@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import fakeHotel from '../../fakeData/fakeHotel';
+import React from 'react';
+import './Hotel.css'
 
 const Hotel = (props) => {
-    const {name,photo}=props.hotel;
+    const { name, photo, guest, bedrooms, beds, baths, details, rating, totalRate, price, totalPrice } = props.hotel;
     return (
         <div className="single-hotel-container">
-            <div>
-                <img src={photo} alt=""/>
+            <div className="hotel-photo">
+                <img src={photo} alt="" />
             </div>
-            <div>
-                <h2>name:{name}</h2>
+            <div className="hotel-details">
+                <h3>{name}</h3>
+                <p>{guest}guests {bedrooms}bedrooms {beds}beds {baths}baths<br />   
+                    {details} <br />
+                    rating price totalPrice
+                </p>
             </div>
         </div>
     );

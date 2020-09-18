@@ -2,20 +2,25 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import fakeHotel from '../../fakeData/fakeHotel';
 import Hotel from '../Hotel/Hotel';
+import './NearestHotel.css'
 
 const NearestHotel = () => {
     const { place } = useParams();
-
-    const threeHotels = fakeHotel.filter(singleHotel => singleHotel.category === { place })
-    console.log(threeHotels);
+    const threeHotels = fakeHotel.filter(singleHotel => singleHotel.category === place)
     const [hotels, setHotels] = useState(threeHotels)
     return (
-        <div>
-            <hr />
-            <h2>name:{place}</h2>
-            {/* {
-                hotels.map(singleHotel => <Hotel hotel={singleHotel} key={singleHotel.id}></Hotel>)
-            } */}
+        <div className="hotelsAndMap-container">
+            <div className="place-name-container">
+                <p>252 stay Apr 13-17 3 guests</p>
+                <h2>Stay in {place}</h2>
+                {
+                    hotels.map(singleHotel => <Hotel hotel={singleHotel} key={singleHotel.id}></Hotel>)
+                }
+            </div>
+            <div className="google-map-container">
+                <h1>this is google map section</h1>
+            </div>
+
         </div>
     );
 };

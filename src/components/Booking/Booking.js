@@ -6,10 +6,10 @@ import fakeLocation from '../../fakeData/fakeLocation';
 import './Booking.css'
 
 const Booking = () => {
-    const { Lname } = useParams();
+    const { LocName } = useParams();
 
     const [locationInfo, setLocationInfo] = useState([])
-    const newLocation = fakeLocation.find(loc => loc.name === Lname);
+    const newLocation = fakeLocation.find(loc => loc.name === LocName);
     useEffect(() => {
         setLocationInfo(newLocation);
     },[])

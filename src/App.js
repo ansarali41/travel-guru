@@ -12,12 +12,10 @@ import Booking from './components/Booking/Booking';
 import NearestHotel from './components/NearestHotel/NearestHotel';
 import Login from './components/Login/Login';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import fakeLocation from './fakeData/fakeLocation';
 
 export const UserContext = createContext()
 
 function App() {
-  const {fullDescription} = fakeLocation[0];
   const [loggedInUser, setLoggedInUser] = useState({
     name:'',
     email:''
@@ -32,7 +30,7 @@ function App() {
             <Home></Home>
           </Route>
 
-          <Route path="/booking/:Lname">
+          <Route path="/booking/:LocName">
             <Booking></Booking>
           </Route>
 
