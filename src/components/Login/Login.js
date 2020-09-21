@@ -59,41 +59,43 @@ const Login = () => {
     const [isCreateAccount, setIsCreateAccount] = useState(false)
     const createAccountForm = (isCreateAccount) => {
         setIsCreateAccount(isCreateAccount);
+        setMessage({});
     }
 
-    const [message, setMessage] = useState({
-        error: ''
-    })
+    const [message, setMessage] = useState({})
+    const [userEmail, setUserEmail] = useState({})
 
-    // form handle here
+    //login and create account form handle here
     const { register, handleSubmit, errors, watch } = useForm();
     const onSubmit = data => {
-        console.log(data);
         const { firstName, lastName, email, password } = data;
         const name = firstName + ' ' + lastName;
 
-        // create acc
+
+        // creating new user account
         if (isCreateAccount && email && password) {
             console.log('create account');
             firebase.auth().createUserWithEmailAndPassword(email, password)
                 .then(res => {
-                    const newUser = {
-                        name: name,
-                        email: email
-                    }
-                    setLoggedInUser(newUser);
                     updateUserName(name);
-                    history.replace(from);
+                    verifyEmail();
+                    const newMessage = {
+                        error: "Successfully created account,Please, Verify your email, Check your email inbox"
+                    }
+                    setMessage(newMessage)
                 })
                 .catch(function (error) {
-                    message.error = "This email has already an account"
-                    setMessage(message)
+                    const newMessage = {
+                        error: "This email has already an account"
+                    }
+                    setMessage(newMessage)
                 });
         }
 
         // user login
         if (!isCreateAccount && email && password) {
             console.log('login user');
+            setUserEmail(email);
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then(res => {
                     const newUser = {
@@ -102,10 +104,13 @@ const Login = () => {
                     }
                     setLoggedInUser(newUser)
                     history.replace(from)
+
                 })
                 .catch(function (error) {
-                    message.error = "Wrong password !"
-                    setMessage(message)
+                    const newMessage = {
+                        error: "Wrong password !"
+                    }
+                    setMessage(newMessage)
                 });
         }
     };
@@ -113,14 +118,45 @@ const Login = () => {
     // update user name
     const updateUserName = name => {
         const user = firebase.auth().currentUser;
-
         user.updateProfile({
             displayName: name,
-        }).then(() => {
-            console.log('user name updated successfully');
         }).catch((error) => {
             console.log(error);
         });
+    }
+
+    // email verification
+    const verifyEmail = () => {
+        var user = firebase.auth().currentUser;
+        user.updateEmail("user@example.com").then(function () {
+            // Update successful.
+        }).catch(function (error) {
+            // An error happened.
+        });
+    }
+
+    // reset user password
+    const resetPassword = (email) => {
+        if(email.length > 10){
+            const auth = firebase.auth();
+        const emailAddress = email;
+
+        auth.sendPasswordResetEmail(emailAddress).then(function () {
+            const newMessage = {
+                error: "To reset Password check your email inbox"
+            }
+            setMessage(newMessage)
+        }).catch(function (error) {
+           console.log(error);
+        });
+        }
+        else{
+            const newMessage = {
+                error: "At first input email address and try to login"
+            }
+            setMessage(newMessage)
+        }
+        
     }
 
     return (
@@ -171,8 +207,8 @@ const Login = () => {
                         message: "password is required"
                     },
                     maxLength: {
-                        value: 15,
-                        message: "password must have max length of 15"
+                        value: 25,
+                        message: "password must have max length of 25"
                     }
                 })} />
                 <br />
@@ -188,20 +224,21 @@ const Login = () => {
                     <br />
                 </div>}
 
+                {!isCreateAccount && <p style={{ color: 'orange', cursor: 'pointer' }} onClick={() => resetPassword(userEmail)}>Forget Password</p>}
+
                 {isCreateAccount ? <input type="submit" className="submit-btn" value="Create account" /> : <input className="submit-btn" type="submit" value="Login" />}
 
                 {isCreateAccount ? <p>already have an account! <span className="create-account" onClick={() => createAccountForm(!isCreateAccount)}>Login here</span></p> :
                     <p>Don't have account? <span className="create-account" onClick={() => createAccountForm(!isCreateAccount)}>Create an account</span></p>
                 }
+
             </form>
 
             <h5>or</h5>
             <hr />
-            <button className="sign-in-btn" onClick={facebookSignIn}> <img src="https://i.ibb.co/nCysGJT/fb.png" alt=""/> Continue with Facebook</button> <br />
-            
-            <button className="sign-in-btn" onClick={googleSignIn}> <img src="https://i.ibb.co/DpHxMj0/google.png" alt=""/> Continue with Google</button> <br />
-            
+            <button className="sign-in-btn" onClick={facebookSignIn}> <img src="https://i.ibb.co/nCysGJT/fb.png" alt="" /> Continue with Facebook</button> <br />
 
+            <button className="sign-in-btn" onClick={googleSignIn}> <img src="https://i.ibb.co/DpHxMj0/google.png" alt="" /> Continue with Google</button> <br />
         </div>
     );
 }
