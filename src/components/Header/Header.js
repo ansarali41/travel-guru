@@ -4,23 +4,16 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import logo from '../../Images/Logo.png'
 import './Header.css'
-import * as firebase from "firebase/app";
-import "firebase/auth";
+import { logOutHandler } from '../Login/LoginManager';
 
 const Header = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    // user logOut section
-    const logOutHandler = () => {
-        firebase.auth().signOut().then(function () {
-            const loggedOutUser = {
-                name: '',
-                email: ''
-            }
-            console.log("Sign-out successful");
-            setLoggedInUser(loggedOutUser)
-        }).catch(function (error) {
-            // An error happened.
-        });
+    
+    const userLogOutHandler = () => {
+        logOutHandler()
+            .then(res => {
+                setLoggedInUser(res)
+            })
     }
 
     return (
@@ -38,7 +31,7 @@ const Header = () => {
                     <Link className="nav-link" to="/progress">Blog</Link>
                     <Link className="nav-link" to="/progress">Contact</Link>
                     {loggedInUser.name && <Link className="nav-link" to="/">{loggedInUser.name}</Link>}
-                    {loggedInUser.name ? <Link className="nav-link" to="/login"><Button onClick={logOutHandler} variant="warning">Logout</Button>
+                    {loggedInUser.name ? <Link className="nav-link" to="/login"><Button onClick={userLogOutHandler} variant="warning">Logout</Button>
                     </Link> : <Link className="nav-link" to="/login"><Button variant="warning">Login</Button></Link>
                     }
                 </Nav>

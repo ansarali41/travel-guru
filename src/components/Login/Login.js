@@ -1,58 +1,34 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import './Login.css'
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
+import { initializeFirebase, handleGoogleSignIn, handleFacebookSignIn, createNewUserAccount, userLoginHandler, handleResetPassword } from './LoginManager';
 
 const Login = () => {
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
+    initializeFirebase();
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     const history = useHistory();
     const location = useLocation();
     const { from } = location.state || { from: { pathname: "/" } };
 
-    // google Login
+    // google sign 
     const googleSignIn = () => {
-        const googleProvider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(googleProvider).then(function (result) {
-            const user = result.user;
-            const { displayName, email } = user;
-            const signedInUser = {
-                name: displayName,
-                email: email
-            }
-            setLoggedInUser(signedInUser);
-            history.replace(from);
-        })
-            .catch(function (error) {
-                var errorMessage = error.message;
-                console.log(errorMessage);
-            });
+        handleGoogleSignIn()
+            .then(res => {
+                setLoggedInUser(res);
+                history.replace(from);
+            })
     }
 
     // facebook sign in
     const facebookSignIn = () => {
-        const fbProvider = new firebase.auth.FacebookAuthProvider();
-        firebase.auth().signInWithPopup(fbProvider).then(function (result) {
-            const user = result.user;
-            const { displayName, email } = user;
-            const signedInUser = {
-                name: displayName,
-                email: email
-            }
-            setLoggedInUser(signedInUser);
-            history.replace(from);
-        })
-            .catch(function (error) {
-                var errorMessage = error.message;
-                console.log(errorMessage);
-            });
+        handleFacebookSignIn()
+            .then(res => {
+                setLoggedInUser(res);
+                history.replace(from);
+            })
     }
 
     // user sign in and create a new account
@@ -71,92 +47,46 @@ const Login = () => {
         const { firstName, lastName, email, password } = data;
         const name = firstName + ' ' + lastName;
 
-
         // creating new user account
         if (isCreateAccount && email && password) {
-            console.log('create account');
-            firebase.auth().createUserWithEmailAndPassword(email, password)
+            createNewUserAccount(name, email, password)
                 .then(res => {
-                    updateUserName(name);
-                    verifyEmail();
-                    const newMessage = {
-                        error: "Successfully created account,Please, Verify your email, Check your email inbox"
-                    }
-                    setMessage(newMessage)
+                    setMessage(res);
                 })
-                .catch(function (error) {
-                    const newMessage = {
-                        error: "This email has already an account"
-                    }
-                    setMessage(newMessage)
-                });
         }
 
         // user login
         if (!isCreateAccount && email && password) {
-            console.log('login user');
             setUserEmail(email);
-            firebase.auth().signInWithEmailAndPassword(email, password)
-                .then(res => {
-                    const newUser = {
-                        name: firebase.auth().currentUser.displayName,
-                        email: email
-                    }
-                    setLoggedInUser(newUser)
-                    history.replace(from)
 
-                })
-                .catch(function (error) {
-                    const newMessage = {
-                        error: "Wrong password !"
+            userLoginHandler(email, password)
+                .then(res => {
+                    if (res.name) {
+                        setLoggedInUser(res);
+                        history.replace(from)
                     }
-                    setMessage(newMessage)
-                });
+                    else {
+                        setMessage(res);
+                    }
+                })
         }
     };
 
-    // update user name
-    const updateUserName = name => {
-        const user = firebase.auth().currentUser;
-        user.updateProfile({
-            displayName: name,
-        }).catch((error) => {
-            console.log(error);
-        });
-    }
-
-    // email verification
-    const verifyEmail = () => {
-        var user = firebase.auth().currentUser;
-        user.updateEmail("user@example.com").then(function () {
-            // Update successful.
-        }).catch(function (error) {
-            // An error happened.
-        });
-    }
 
     // reset user password
     const resetPassword = (email) => {
-        if(email.length > 10){
-            const auth = firebase.auth();
-        const emailAddress = email;
-
-        auth.sendPasswordResetEmail(emailAddress).then(function () {
-            const newMessage = {
-                error: "To reset Password check your email inbox"
-            }
-            setMessage(newMessage)
-        }).catch(function (error) {
-           console.log(error);
-        });
+        if (email.length > 10) {
+            handleResetPassword(email)
+                .then(res => {
+                    setMessage(res);
+                })
         }
-        else{
+        else {
             const newMessage = {
                 error: "At first input email address and try to login"
             }
             setMessage(newMessage)
         }
-        
     }
 
     return (
