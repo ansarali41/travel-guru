@@ -3,7 +3,6 @@ import { Form, Nav, Navbar, Button, FormControl } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../App';
 import logo from '../../Images/Logo.png'
-import { logOutHandler } from '../Login/Login';
 import './Header.css'
 import * as firebase from "firebase/app";
 import "firebase/auth";
@@ -19,12 +18,10 @@ const Header = () => {
             }
             console.log("Sign-out successful");
             setLoggedInUser(loggedOutUser)
-
         }).catch(function (error) {
             // An error happened.
         });
     }
-
 
     return (
         <div className="header-container">
@@ -36,15 +33,14 @@ const Header = () => {
                     </Form>
                 </Nav>
                 <Nav>
-                    <Link to="/home">Home</Link>
-                    <Nav.Link href="">Destination</Nav.Link>
-                    <Nav.Link href="">Blog</Nav.Link>
-                    <Nav.Link href="">Contact</Nav.Link>
-                    {loggedInUser.name &&  <Nav.Link href="">{loggedInUser.name}</Nav.Link>}
-                    {loggedInUser.name ? <Link to="/login"><Button onClick={logOutHandler}      variant="warning">Logout</Button>
-                    </Link> : <Link to="/login"><Button variant="warning">Login</Button></Link>
+                    <Link className="nav-link" to="/home">Home</Link>
+                    <Link className="nav-link" to="/progress">Destination</Link>
+                    <Link className="nav-link" to="/progress">Blog</Link>
+                    <Link className="nav-link" to="/progress">Contact</Link>
+                    {loggedInUser.name && <Link className="nav-link" to="/">{loggedInUser.name}</Link>}
+                    {loggedInUser.name ? <Link className="nav-link" to="/login"><Button onClick={logOutHandler} variant="warning">Logout</Button>
+                    </Link> : <Link className="nav-link" to="/login"><Button variant="warning">Login</Button></Link>
                     }
-                        
                 </Nav>
             </Navbar>
         </div>

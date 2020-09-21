@@ -9,13 +9,16 @@ const Home = () => {
     const[locations, setLocations] = useState(fakeLocation);
  
     return (
-        <Grid container direction="row" justify="center" className="locations-container" >
-
+        <div style={{ textAlign: 'center',color: 'orange'}}>
+            <h3>Select Your Dream Destination</h3>
+            <Grid container direction="row" justify="center" className="locations-container" >
             {
                 locations.map(loc => <TravelingLocation location={loc} key={loc.id}></TravelingLocation>)
             }
             
         </Grid>
+        </div>
+        
     );
 };
 

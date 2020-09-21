@@ -1,5 +1,5 @@
 .login-container{
-    margin:  5% 35%;
+    margin:  1% 35%;
     text-align: center;
 }
 .login-form{
@@ -15,4 +15,17 @@
 .create-account{
     color: orange;
     cursor: pointer;
+}
+.submit-btn{
+    background-color: orange;
+}
+.sign-in-btn {
+    padding: 5px 0px;
+    width: 250px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+button img{
+    width: 20px;
 }

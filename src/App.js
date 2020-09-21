@@ -12,14 +12,12 @@ import Booking from './components/Booking/Booking';
 import NearestHotel from './components/NearestHotel/NearestHotel';
 import Login from './components/Login/Login';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import Progress from './components/Progress/Progress';
 
 export const UserContext = createContext()
 
 function App() {
-  const [loggedInUser, setLoggedInUser] = useState({
-    name:'',
-    email:''
-  });
+  const [loggedInUser, setLoggedInUser] = useState({});
 
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
@@ -41,6 +39,9 @@ function App() {
             <Login></Login>
           </Route>
 
+          <Route path="/progress">
+            <Progress></Progress>
+          </Route>
           <Route exact path="/">
             <Home></Home>
           </Route>

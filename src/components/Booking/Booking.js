@@ -1,4 +1,3 @@
-import { Grid } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useParams } from 'react-router-dom';
@@ -12,37 +11,50 @@ const Booking = () => {
     const newLocation = fakeLocation.find(loc => loc.name === LocName);
     useEffect(() => {
         setLocationInfo(newLocation);
-    },[])
+    }, [])
 
     const { register, handleSubmit, errors } = useForm();
     const onSubmit = data => console.log(data);
 
     return (
-        <Grid container className="booking-container">
-
-            <Grid item xs={12} sm={6} className="location-details">
+        <div className="booking-container">
+            <div className="booking-location-details">
                 {locationInfo.name && <h1>{locationInfo.name}</h1>}
                 {locationInfo.name && <p>{locationInfo.fullDescription}</p>}
-                
-            </Grid>
-            <Grid item xs={12} sm={6} className="booking-start">
+            </div>
+            <div className="booking-form">
                 <form onSubmit={handleSubmit(onSubmit)}>
-
-                    <input name="example" defaultValue="Dhaka" ref={register({ required: true })} /> <br />
-                    {errors.example && <span style={{ color: 'red' }}>This field is required</span>}
+                    <label htmlFor="origin">Origin</label>
+                    <input name="origin" defaultValue="Dhaka" ref={register({ required: true })} /> <br />
+                    {errors.origin && <span style={{ color: 'red' }}>This field is required</span>}
                     <br />
 
-
-                    <input name="exampleRequired" defaultValue={locationInfo.name} ref={register({ required: true })} /> <br />
-                    {errors.exampleRequired && <span style={{ color: 'red' }}>This field is required</span>}
+                    <label htmlFor="destination">Destination</label>
+                    <input name="destination" defaultValue={locationInfo.name} ref={register({ required: true })} /> <br />
+                    {errors.location && <span style={{ color: 'red' }}>This field is required</span>}
                     <br />
+
+                    <div className="date-input-container">
+                        <div className="date-input">
+                            <label htmlFor="start">From:</label>
+                            <input type="date" id="start" name="trip-start"
+                                defaultValue="2020-09-20"
+                                min="2020-09-25" max="2020-10-25" />
+                        </div>
+                        <div className="date-input">
+                            <label htmlFor="end">To:</label>
+                            <input type="date" id="end" name="trip-start"
+                                defaultValue="2020-09-25"
+                                min="2020-09-22" max="2020-10-25" />
+                        </div>
+                    </div>
+                    <br/>
 
                     <Link to={`/nearestHotel/${locationInfo.name}`}><input className="submit-btn" type="submit" value="Booking Start" /></Link>
                 </form>
+            </div>
 
-            </Grid>
-
-        </Grid>
+        </div>
     );
 };
 

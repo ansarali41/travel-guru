@@ -1,16 +1,14 @@
-/* .traveling-location-container{
-    width: 300px;
-    height: 400px;
-} */
 .img-container {
     border: 2px solid gray !important;
     border-radius: 22px !important;
     position: relative;
     text-align: center;
     color: white;
+    margin-left: 40px;
   }
   .centered {
     position: absolute;
     bottom: 8px;
     right: 30%;
   }
+  

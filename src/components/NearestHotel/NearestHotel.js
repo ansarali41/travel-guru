@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import fakeHotel from '../../fakeData/fakeHotel';
+import GoogleMap from '../GoogleMap/GoogleMap';
 import Hotel from '../Hotel/Hotel';
 import './NearestHotel.css'
 
@@ -17,8 +18,8 @@ const NearestHotel = () => {
                     hotels.map(singleHotel => <Hotel hotel={singleHotel} key={singleHotel.id}></Hotel>)
                 }
             </div>
-            <div className="google-map-container">
-                <h1>this is google map section</h1>
+            <div className="google-map-container" style={{width: '100%'}}>
+                <GoogleMap></GoogleMap>
             </div>
 
         </div>

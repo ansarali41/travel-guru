@@ -12,7 +12,7 @@ const Hotel = (props) => {
                 <h3>{name}</h3>
                 <p>{guest}guests {bedrooms}bedrooms {beds}beds {baths}baths<br />   
                     {details} <br />
-                    rating price totalPrice
+                    <img className='rating-icon' src="https://i.ibb.co/wr5sV0G/star-1.png" alt=""/>{rating}({totalRate}) ${price}/night ${totalPrice}total
                 </p>
             </div>
         </div>
