@@ -4,6 +4,7 @@ import './Login.css'
 import { UserContext } from '../../App';
 import { useHistory, useLocation } from 'react-router-dom';
 import { initializeFirebase, handleGoogleSignIn, handleFacebookSignIn, createNewUserAccount, userLoginHandler, handleResetPassword } from './LoginManager';
+import Header from '../Header/Header';
 
 const Login = () => {
     initializeFirebase();
@@ -90,7 +91,9 @@ const Login = () => {
     }
 
     return (
-        <div className="login-container">
+        <div>
+            <Header></Header>
+            <div className="login-container">
             <p style={{ color: 'red' }}>{message.error}</p>
 
             <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
@@ -169,6 +172,7 @@ const Login = () => {
             <button className="sign-in-btn" onClick={facebookSignIn}> <img src="https://i.ibb.co/nCysGJT/fb.png" alt="" /> Continue with Facebook</button> <br />
 
             <button className="sign-in-btn" onClick={googleSignIn}> <img src="https://i.ibb.co/DpHxMj0/google.png" alt="" /> Continue with Google</button> <br />
+        </div>
         </div>
     );
 }

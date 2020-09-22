@@ -6,10 +6,12 @@
 .booking-location-details{
     width: 600px;
     margin-top: 60px;
+    color:white;
 }
 .booking-location-details h1{
     font-size: 60px;
     text-align: center;
+    
 }
 .booking-form{
     border: 2px solid  #E0A800;
@@ -17,6 +19,7 @@
     width: 400px;
     margin-left: 60px;
     padding: 60px;
+    background-color:white;
 }
 .booking-form input{
     width: 90%;
