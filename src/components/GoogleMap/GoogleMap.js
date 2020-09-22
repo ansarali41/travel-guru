@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 import './GoogleMap.css'
+import { useParams } from 'react-router-dom';
 
 const mapStyles = {
     width: '100%',
@@ -12,6 +13,7 @@ const mapPosition = {
     lng: 91.97111020452411
 }
 
+
 export class GoogleMap extends Component {
     render() {
         return (
@@ -22,15 +24,7 @@ export class GoogleMap extends Component {
                 className="mapContainerWrapper">
 
                 <Marker position={mapPosition} />
-
-                <style jsx>{`
-                .mapContainerWrapper{
-                position:relative !important;
-                }
-                .mapContainerWrapper div:first-child{
-                position:relative !important;
-                }
-                 `}</style>
+                
             </Map>
         );
     }

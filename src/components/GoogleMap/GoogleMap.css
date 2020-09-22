@@ -1,3 +1,9 @@
 .map-container{
     width: 600px;
 }
+.mapContainerWrapper{
+    position:relative !important;
+ }
+ .mapContainerWrapper div:first-child{
+    position:relative !important;
+ }
