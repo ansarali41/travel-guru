@@ -79,7 +79,16 @@ const Login = () => {
         if (email.length > 10) {
             handleResetPassword(email)
                 .then(res => {
-                    setMessage(res);
+                    console.log(res);
+                        if(res.message){
+                            const newMessage = {
+                                error: res.message
+                            }
+                            setMessage(newMessage);
+                        }
+                        else{
+                            setMessage(res)
+                        }                   
                 })
         }
         else {

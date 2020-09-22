@@ -104,7 +104,7 @@ export const handleResetPassword = (email) => {
             }
             return newMessage;
         }).catch(function (error) {
-            console.log(error);
+            return error;
         });
 }
 
